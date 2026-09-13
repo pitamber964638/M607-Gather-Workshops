@@ -1,1 +1,15 @@
 
+node_modules/
+.env
+.local-credentials
+.local-credentials.*
+data/*.sqlite*
+test-results/
+playwright-report/
+.DS_Store
+*.log
+report-planning/
+output/
+release/
+.env.*
+!.env.example
