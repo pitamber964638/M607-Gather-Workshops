@@ -1,0 +1,9 @@
+node_modules/
+data/
+.local-credentials
+.env
+package-lock.json
+public/assets/
+report-planning/
+output/
+release/
