@@ -2,6 +2,10 @@
 
 A full-stack web application for a community workshop business in East London. Members discover free sessions, reserve places, manage bookings and review completed experiences. Administrators manage workshops and view booking analytics.
 
+
+Live application: [https://m607-gather-workshops.onrender.com](https://m607-gather-workshops.onrender.com)
+
+
 ## Run locally
 
 Prerequisites: Node.js 22.13 or newer and npm. SQLite is included in Node.js. No separate database server is needed. Node 22 may print an experimental SQLite warning; this does not prevent the application from running.
@@ -125,13 +129,13 @@ For a browser walkthrough:
 
 ## Production setup
 
-A live deployment is not currently configured. Hosting requires a Node.js server and persistent storage for SQLite. GitHub Pages cannot run the server.
+The application is deployed on Render at [https://m607-gather-workshops.onrender.com](https://m607-gather-workshops.onrender.com). The free service may take about one minute to start after a period of inactivity. Its filesystem is temporary, so the seed command recreates demonstration data when Render restarts the service.
 
 1. Install Node.js 22.13 or newer and run `npm ci --omit=dev` in the application directory.
 2. Use a persistent disk for `DATABASE_PATH`. Run one application instance with SQLite. Keep the database and its WAL files outside disposable release directories.
 3. Configure `NODE_ENV=production`, the exact HTTPS `APP_ORIGIN`, and the intended `HOST` and `PORT`.
 4. Place an HTTPS reverse proxy in front of the application and run `npm start` under a process supervisor. The application currently treats the direct connection as the client address; configure trusted proxy handling deliberately before enabling per-client rate limiting behind a proxy. Do not expose the HTTP backend publicly.
 5. Bootstrap an administrator with `npm run create-admin`. This command reads `ADMIN_NAME`, `ADMIN_EMAIL` and `ADMIN_PASSWORD` from the environment and does not seed demo content.
-6. Check `/api/health`, authentication, booking and external API access. Record the live application URL after deployment has been verified.
+6. Check `/api/health`, authentication, booking and external API access after deployment.
 
 Back up SQLite through its backup API or stop the application before copying its database files. Restore a backup to a separate path and verify it before replacing a running database.
